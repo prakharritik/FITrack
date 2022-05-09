@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
+import NavLink from "../components/NavLink";
 import React from "react";
+import AuthForm from "../components/AuthForm";
 
-const SignupScreen = () => {
+const SignupScreen = ({ navigation }) => {
   return (
     <View>
-      <Text>SignupScreen</Text>
+      <AuthForm headerText="Sign Up" lottie="signup" />
+      {/* <Button
+        title="mainFlow"
+        onPress={() => navigation.navigate("mainFlow")}
+      /> */}
+      <NavLink
+        text="Already have an account? Sign in instead."
+        routeName="Signin"
+      />
     </View>
   );
 };

@@ -1,7 +1,9 @@
 import React from "react";
+
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+
 import AddTrackScreen from "./src/screens/AddTrackScreen";
 import MytracksScreen from "./src/screens/MytracksScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
@@ -28,6 +30,9 @@ const switchNavigator = createSwitchNavigator(
   },
   {
     initialRouteName: "loginFlow",
+    defaultNavigationOptions: {
+      cardStyle: { backgroundColor: "#FFFFFF" },
+    },
   }
 );
 
