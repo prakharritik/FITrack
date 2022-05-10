@@ -19,6 +19,7 @@ router.post(
   [
     check("name", "Name is required.").not().isEmpty(),
     check("email", "E-Mail is required.").notEmpty(),
+    check("email", "Please include a valid email").isEmail(),
     check("password", "Password should be of at least 6 characters.").isLength({
       min: 6,
     }),
@@ -46,7 +47,7 @@ router.post(
         email,
       });
 
-      const salt = await bcrypt.genSalt();
+      const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
 
