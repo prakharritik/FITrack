@@ -10,7 +10,7 @@ import {
 } from "@expo-google-fonts/roboto";
 import React, { useState } from "react";
 
-const AuthForm = ({ headerText, lottie }) => {
+const AuthForm = ({ headerText, lottie, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let [fontsLoaded] = useFonts({
@@ -63,7 +63,7 @@ const AuthForm = ({ headerText, lottie }) => {
         <Button
           buttonStyle={{ width: 150 }}
           icon={<IconButton name="send-circle" size={45} color="#111" />}
-          onPress={() => alert("click")}
+          onPress={() => onSubmit(email, password)}
           type="clear"
         />
       </View>

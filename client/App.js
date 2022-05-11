@@ -3,6 +3,7 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { Provider } from "react-redux";
 
 import AddTrackScreen from "./src/screens/AddTrackScreen";
 import MytracksScreen from "./src/screens/MytracksScreen";
@@ -11,6 +12,8 @@ import RewardsScreen from "./src/screens/RewardsScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import TrackprogressScreen from "./src/screens/TrackprogressScreen";
+
+import store from "./src/store";
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -39,5 +42,9 @@ const switchNavigator = createSwitchNavigator(
 const App = createAppContainer(switchNavigator);
 
 export default () => {
-  return <App />;
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };

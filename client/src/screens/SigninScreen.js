@@ -2,11 +2,17 @@ import { Button, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import NavLink from "../components/NavLink";
 import AuthForm from "../components/AuthForm";
+import { connect } from "react-redux";
+import { signin } from "../actions/auth";
+import PropTypes from "prop-types";
 
-const SigninScreen = ({ navigation }) => {
+const SigninScreen = ({ navigation, signin, token }) => {
+  if (token) {
+    navigation.navigate("mainFlow");
+  }
   return (
     <View style={styles.container}>
-      <AuthForm headerText="Sign In" lottie="login" />
+      <AuthForm headerText="Sign In" lottie="login" onSubmit={signin} />
       <NavLink
         text="Don't have an account? Sign up instead."
         routeName="Signup"
@@ -15,7 +21,16 @@ const SigninScreen = ({ navigation }) => {
   );
 };
 
-export default SigninScreen;
+SigninScreen.propTypes = {
+  token: PropTypes.string,
+  signin: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps, { signin })(SigninScreen);
 
 const styles = StyleSheet.create({
   container: {
