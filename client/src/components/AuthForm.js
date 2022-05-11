@@ -13,6 +13,7 @@ import React, { useState } from "react";
 const AuthForm = ({ headerText, lottie, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_400Regular_Italic,
