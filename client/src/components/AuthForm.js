@@ -28,6 +28,7 @@ const AuthForm = ({ headerText, lottie, onSubmit }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.headerText}>{headerText}</Text>
+
         {lottie === "login" ? (
           <LottieView
             source={require("../../assets/19555-meditation.json")}
@@ -41,6 +42,7 @@ const AuthForm = ({ headerText, lottie, onSubmit }) => {
             autoPlay
           />
         )}
+
         <Input
           placeholder="Email"
           leftIcon={<IconInput name="user" size={24} color="black" />}
