@@ -22,9 +22,15 @@ export const signin = (email, password) => async (dispatch) => {
 
 export const localSignIn = () => async (dispatch) => {
   const token = await AsyncStorage.getItem("token");
+
   if (token) {
-    dispatch({ type: SIGNIN_SUCCESS, payload: { token } });
-    navigate("mainFlow");
+    try {
+      const res = await fitnessAPI.post("/auth/verify", { token });
+      dispatch({ type: SIGNIN_SUCCESS, payload: { token } });
+      navigate("mainFlow");
+    } catch (err) {
+      navigate("Signin");
+    }
   } else {
     navigate("Signin");
   }

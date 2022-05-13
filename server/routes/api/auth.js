@@ -73,5 +73,18 @@ router.post(
     }
   }
 );
+router.post("/verify", (req, res) => {
+  const { token } = req.body.token;
+
+  if (!token) {
+    return res.status(401).send({ error: "You must be logged in." });
+  }
+
+  jwt.verify(token, process.env.jwtSecret, async (err, decoded) => {
+    if (err) return res.status(401).send({ error: "Invalid token" });
+
+    return res.status(200).send({ message: "success" });
+  });
+});
 
 module.exports = router;

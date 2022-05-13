@@ -57,4 +57,21 @@ router.post(
   }
 );
 
+router.get("/", async (req, res) => {
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    if (!profile) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "There is no profile for this user." }] });
+    }
+
+    return res.json(profile);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Server Error.");
+  }
+});
+
 module.exports = router;
