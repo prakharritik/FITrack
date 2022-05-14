@@ -11,3 +11,12 @@ export const ADD_CURR_LOCATION = "ADD_CURR_LOCATION";
 export const START_RECORDING = "START_RECORDING";
 export const ADD_LOCATION = "ADD_LOCATION";
 export const STOP_RECORDING = "STOP_RECORDING";
+export const FETCH_WALK = "FETCH_WALK";
+
+export const ADD_SLEEP = "ADD_SLEEP";
+export const FETCH_SLEEP = "FETCH_SLEEP";
+export const SLEEP_ERROR = "SLEEP_ERROR";
+
+export const ADD_CALORIE = "ADD_CALORIE";
+export const FETCH_CALORIE = "FETCH_CALORIE";
+export const CALORIE_ERROR = "CALORIE_ERROR";
