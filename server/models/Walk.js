@@ -7,7 +7,7 @@ const Walk = new mongoose.Schema({
   },
   date: {
     type: "date",
-    required: true,
+    default: Date.now,
   },
   distance: {
     type: "Number",

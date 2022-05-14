@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Provider } from "react-redux";
 import { setNavigator } from "./src/navigationRef";
 
-import AddTrackScreen from "./src/screens/AddTrackScreen";
+import AddWalkScreen from "./src/screens/AddWalkScreen";
 import MytracksScreen from "./src/screens/MytracksScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
@@ -32,7 +32,7 @@ const switchNavigator = createSwitchNavigator(
       }),
       Trackflow: createStackNavigator({
         Tracks: MytracksScreen,
-        Addtrack: AddTrackScreen,
+        Addwalk: AddWalkScreen,
         Progress: TrackprogressScreen,
       }),
       Rewards: RewardsScreen,

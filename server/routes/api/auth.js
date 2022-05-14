@@ -74,7 +74,7 @@ router.post(
   }
 );
 router.post("/verify", (req, res) => {
-  const { token } = req.body.token;
+  const { token } = req.body;
 
   if (!token) {
     return res.status(401).send({ error: "You must be logged in." });
