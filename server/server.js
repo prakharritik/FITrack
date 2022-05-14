@@ -12,6 +12,8 @@ app.use("/users", require("./routes/api/users"));
 app.use("/auth", require("./routes/api/auth"));
 app.use("/profile", require("./routes/api/profile"));
 app.use("/walk", require("./routes/api/walk"));
+app.use("/sleep", require("./routes/api/walk"));
+app.use("/calorie", require("./routes/api/calorie"));
 
 app.get("/", (req, res) => {
   res.send("Welcome to Fitness Pro API");

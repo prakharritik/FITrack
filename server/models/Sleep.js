@@ -7,9 +7,9 @@ const Sleep = new mongoose.Schema({
   },
   date: {
     type: "date",
-    required: true,
+    default: Date.now,
   },
-  time: {
+  duration: {
     type: "Number",
     required: true,
   },

@@ -7,7 +7,7 @@ const Calorie = new mongoose.Schema({
   },
   date: {
     type: "date",
-    required: true,
+    default: Date.now,
   },
   count: {
     type: "Number",
