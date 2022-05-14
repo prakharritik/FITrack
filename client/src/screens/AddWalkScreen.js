@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Map from "../components/Map";
 import useLocation from "../hooks/useLocation";
+import { withNavigationFocus } from "react-navigation";
 import {
   addLocation,
   startRecording,
@@ -18,6 +19,7 @@ const AddWalkScreen = ({
   stopRecording,
   startRecording,
   locations,
+  isFocused,
 }) => {
   const callback = useCallback(
     (location) => {
@@ -26,7 +28,7 @@ const AddWalkScreen = ({
     [recording]
   );
 
-  const [err] = useLocation(recording, callback);
+  const [err] = useLocation(recording || isFocused, callback);
 
   return (
     <SafeAreaView>
@@ -57,6 +59,6 @@ export default connect(mapStateToProps, {
   addLocation,
   startRecording,
   stopRecording,
-})(AddWalkScreen);
+})(withNavigationFocus(AddWalkScreen));
 
 const styles = StyleSheet.create({});
