@@ -13,6 +13,10 @@ const Calorie = new mongoose.Schema({
     type: "Number",
     required: true,
   },
+  item: {
+    type: "String",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("calorie", Calorie);

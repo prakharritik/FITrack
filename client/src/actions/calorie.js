@@ -1,11 +1,23 @@
 import fitnessAPI from "../api/fitnessAPI";
-import { ADD_CALORIE, CALORIE_ERROR, FETCH_CALORIE } from "./types";
+import nutritionixAPI from "../api/nutritionixAPI";
+import { navigate } from "../navigationRef";
 
-export const addCalorie = (count) => async (dispatch) => {
+import {
+  ADD_CALORIE,
+  CALORIE_ERROR,
+  FETCH_CALORIE,
+  ITEM_DETAIL,
+  LOAD_FOODITEM,
+} from "./types";
+
+export const addCalorie = (name, count) => async (dispatch) => {
   try {
-    const res = await fitnessAPI.post("/calorie", { count });
+    console.log(name, count);
+    const res = await fitnessAPI.post("/calorie", { count, item: name });
     dispatch({ type: ADD_CALORIE, payload: res.data });
+    navigate("Addcalorie");
   } catch (err) {
+    console.log(err);
     dispatch({ type: CALORIE_ERROR });
   }
 };
@@ -15,6 +27,32 @@ export const getCalorie = () => async (dispatch) => {
     const res = await fitnessAPI.get("/calorie");
     dispatch({ type: FETCH_CALORIE, payload: res.data });
   } catch (err) {
+    dispatch({ type: CALORIE_ERROR });
+  }
+};
+
+export const getFoodItems = (item) => async (dispatch) => {
+  try {
+    const res = await nutritionixAPI.get("search/instant?branded=false", {
+      params: { query: item },
+    });
+
+    dispatch({ type: LOAD_FOODITEM, payload: res.data.common });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: CALORIE_ERROR });
+  }
+};
+
+export const getFoodItemDetail = (item) => async (dispatch) => {
+  try {
+    const res = await nutritionixAPI.post("/natural/nutrients", {
+      query: item,
+    });
+
+    dispatch({ type: ITEM_DETAIL, payload: res.data.foods[0] });
+  } catch (err) {
+    console.log(err);
     dispatch({ type: CALORIE_ERROR });
   }
 };

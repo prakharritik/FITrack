@@ -17,6 +17,9 @@ import TrackprogressScreen from "./src/screens/TrackprogressScreen";
 import EditProfileScreen from "./src/screens/EditProfileScreen";
 
 import store from "./src/store";
+import AddCalorieScreen from "./src/screens/AddCalorieScreen";
+import AddSleepScreen from "./src/screens/AddSleepScreen";
+import CalorieDetailScreen from "./src/screens/CalorieDetailScreen";
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -33,6 +36,9 @@ const switchNavigator = createSwitchNavigator(
       Trackflow: createStackNavigator({
         Tracks: MytracksScreen,
         Addwalk: AddWalkScreen,
+        Addcalorie: AddCalorieScreen,
+        Caloriedetail: CalorieDetailScreen,
+        Addsleep: AddSleepScreen,
         Progress: TrackprogressScreen,
       }),
       Rewards: RewardsScreen,

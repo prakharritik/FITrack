@@ -20,3 +20,5 @@ export const SLEEP_ERROR = "SLEEP_ERROR";
 export const ADD_CALORIE = "ADD_CALORIE";
 export const FETCH_CALORIE = "FETCH_CALORIE";
 export const CALORIE_ERROR = "CALORIE_ERROR";
+export const ITEM_DETAIL = "ITEM_DETAIL";
+export const LOAD_FOODITEM = "LOAD_FOODITEM";

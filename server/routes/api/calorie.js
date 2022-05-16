@@ -12,6 +12,7 @@ router.post(
   "/",
   [
     check("count", "Count is required.").notEmpty(),
+    check("item", "Item is required.").notEmpty(),
     check("count", "Count should be a number.").isInt(),
   ],
   async (req, res) => {
@@ -22,10 +23,11 @@ router.post(
     }
 
     try {
-      const { count } = req.body;
+      const { count, item } = req.body;
 
       const calorie = new Calorie({
         user: req.user.id,
+        item,
         count,
       });
 
