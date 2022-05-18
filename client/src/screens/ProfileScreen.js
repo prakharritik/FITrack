@@ -24,11 +24,11 @@ const ProfileScreen = ({
 }) => {
   useEffect(() => {
     getprofile();
-  }, [getprofile]);
+  }, []);
 
   if (loading) return <Text>loading</Text>;
 
-  const { name, age, weight, height } = profile;
+  const { age, weight, height } = profile;
   const bmivalue = bmi(height, weight);
   return (
     <SafeAreaView style={styles.container}>
@@ -44,7 +44,7 @@ const ProfileScreen = ({
             }}
           />
 
-          <Text style={styles.name}>{name} </Text>
+          {/* <Text style={styles.name}>{name} </Text> */}
           <Text style={styles.userInfo}>Age : {age}</Text>
           <Text style={styles.userInfo}>
             {bmivalue.value} {bmivalue.status}{" "}

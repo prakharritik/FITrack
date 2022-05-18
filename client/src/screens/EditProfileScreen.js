@@ -14,21 +14,24 @@ const EditProfileScreen = ({
   useEffect(() => {
     getprofile();
   }, [getprofile]);
-  const [height, setHeight] = useState(profile.height.toString());
-  const [weight, setWeight] = useState(profile.weight.toString());
-  const [age, setAge] = useState(profile.age.toString());
-  const [name, setName] = useState(profile.name);
+  const [height, setHeight] = useState(
+    profile ? profile.height.toString() : ""
+  );
+  const [weight, setWeight] = useState(
+    profile ? profile.weight.toString() : ""
+  );
+  const [age, setAge] = useState(profile ? profile.age.toString() : "");
 
   return (
     <View style={styles.container}>
-      <Input
+      {/* <Input
         placeholder="Name"
         value={name}
         onChangeText={setName}
         inputStyle={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
-      />
+      /> */}
       <Input
         placeholder="Age"
         value={age}
@@ -59,7 +62,7 @@ const EditProfileScreen = ({
       <Button
         buttonStyle={{ width: 150 }}
         icon={<IconButton name="send-circle" size={45} color="#111" />}
-        onPress={() => updateprofile({ name, age, weight, height })}
+        onPress={() => updateprofile({ age, weight, height })}
         type="clear"
       />
     </View>

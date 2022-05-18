@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const ProfileSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
   height: {
     type: Number,
     required: true,
@@ -19,7 +15,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: "user",
   },
 });
 

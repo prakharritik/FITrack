@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async (email, token) => {
+const sendEmail = async (email, name, token) => {
   const mailConfigurations = {
     from: process.env.useremail,
 
@@ -18,7 +18,7 @@ const sendEmail = async (email, token) => {
 
     subject: "Email Verification",
 
-    text: `Hi! ,
+    text: `Hi! ${name},
          Thank you for joining our fitness community. Verify your email to get started.
          Please follow the given link to verify your email
          http://localhost:3000/verify/${token} 

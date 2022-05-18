@@ -13,6 +13,7 @@ import React, { useState } from "react";
 const AuthForm = ({ headerText, lottie, onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -37,11 +38,22 @@ const AuthForm = ({ headerText, lottie, onSubmit }) => {
             autoPlay
           />
         ) : (
-          <LottieView
-            source={require("../../assets/99668-fitness.json")}
-            style={styles.animation}
-            autoPlay
-          />
+          <>
+            <LottieView
+              source={require("../../assets/99668-fitness.json")}
+              style={styles.animation}
+              autoPlay
+            />
+            <Input
+              placeholder="Name"
+              leftIcon={<IconInput name="user" size={24} color="black" />}
+              value={name}
+              onChangeText={setName}
+              inputStyle={styles.input}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </>
         )}
 
         <Input
@@ -66,7 +78,7 @@ const AuthForm = ({ headerText, lottie, onSubmit }) => {
         <Button
           buttonStyle={{ width: 150 }}
           icon={<IconButton name="send-circle" size={45} color="#111" />}
-          onPress={() => onSubmit(email, password)}
+          onPress={() => onSubmit(email, password, name)}
           type="clear"
         />
       </View>
