@@ -2,6 +2,7 @@ export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGOUT = "LOGOUT";
 
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const GET_PROFILE = "GET_PROFILE";
@@ -13,9 +14,10 @@ export const ADD_LOCATION = "ADD_LOCATION";
 export const STOP_RECORDING = "STOP_RECORDING";
 export const FETCH_WALK = "FETCH_WALK";
 
-export const ADD_SLEEP = "ADD_SLEEP";
-export const FETCH_SLEEP = "FETCH_SLEEP";
-export const SLEEP_ERROR = "SLEEP_ERROR";
+export const ADD_POST = "ADD_POST";
+export const UPDATE_POST = "UPDATE_POST";
+export const FETCH_POSTS = "FETCH_POSTS";
+export const POST_ERROR = "POST_ERROR";
 
 export const ADD_CALORIE = "ADD_CALORIE";
 export const FETCH_CALORIE = "FETCH_CALORIE";

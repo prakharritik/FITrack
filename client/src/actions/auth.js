@@ -26,7 +26,11 @@ export const localSignIn = () => async (dispatch) => {
   if (token) {
     try {
       const res = await fitnessAPI.post("/auth/verify", { token });
-      dispatch({ type: SIGNIN_SUCCESS, payload: { token } });
+      console.log(res.data);
+      dispatch({
+        type: SIGNIN_SUCCESS,
+        payload: { token, user: res.data.user },
+      });
       navigate("mainFlow");
     } catch (err) {
       navigate("Signin");
@@ -36,15 +40,21 @@ export const localSignIn = () => async (dispatch) => {
   }
 };
 
-export const signup = (email, password) => async (dispatch) => {
+export const signup = (email, password, name) => async (dispatch) => {
   try {
-    const res = await fitnessAPI.post("/users/signup", { email, password });
+    console.log(name);
+    const res = await fitnessAPI.post("/users/signup", {
+      email,
+      password,
+      name,
+    });
 
     dispatch({ type: REGISTER_SUCCESS, payload: res.data });
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
+      console.log(errors);
     }
     dispatch({ type: REGISTER_FAIL });
   }

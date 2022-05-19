@@ -11,7 +11,6 @@ router.use(requireAuth);
 router.post(
   "/",
   [
-    check("name", "Name is required.").notEmpty(),
     check("age", "Age is required.").notEmpty(),
     check("height", "Height is required.").notEmpty(),
     check("weight", "Weight is required.").notEmpty(),
@@ -25,14 +24,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { age, name, weight, height } = req.body;
+    const { age, weight, height } = req.body;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
 
       const profilefields = {
         age,
-        name,
+
         weight,
         height,
         user: req.user.id,

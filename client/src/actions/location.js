@@ -20,8 +20,6 @@ export const stopRecording = (locations) => async (dispatch) => {
   }
 };
 
-const createTracks = (dispatch) => async (name, locations) => {};
-
 export const addLocation = (location, recording) => (dispatch) => {
   dispatch({ type: ADD_CURR_LOCATION, payload: location });
   if (recording) {

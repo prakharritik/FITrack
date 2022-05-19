@@ -18,8 +18,11 @@ import EditProfileScreen from "./src/screens/EditProfileScreen";
 
 import store from "./src/store";
 import AddCalorieScreen from "./src/screens/AddCalorieScreen";
-import AddSleepScreen from "./src/screens/AddSleepScreen";
 import CalorieDetailScreen from "./src/screens/CalorieDetailScreen";
+import AddPostScreen from "./src/screens/AddPostScreen";
+import ViewPostsScreen from "./src/screens/ViewPostsScreen";
+import EditPostScreen from "./src/screens/EditPostScreen";
+import PostDetailScreen from "./src/screens/PostDetailScreen";
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -38,8 +41,14 @@ const switchNavigator = createSwitchNavigator(
         Addwalk: AddWalkScreen,
         Addcalorie: AddCalorieScreen,
         Caloriedetail: CalorieDetailScreen,
-        Addsleep: AddSleepScreen,
+
         Progress: TrackprogressScreen,
+      }),
+      Postflow: createStackNavigator({
+        Viewposts: ViewPostsScreen,
+        Addpost: AddPostScreen,
+        Postdetail: PostDetailScreen,
+        Editpost: EditPostScreen,
       }),
       Rewards: RewardsScreen,
     }),

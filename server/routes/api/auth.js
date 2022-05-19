@@ -83,7 +83,7 @@ router.post("/verify", (req, res) => {
   jwt.verify(token, process.env.jwtSecret, async (err, decoded) => {
     if (err) return res.status(401).send({ error: "Invalid token" });
 
-    return res.status(200).send({ message: "success" });
+    return res.status(200).send({ message: "success", user: decoded.user });
   });
 });
 
