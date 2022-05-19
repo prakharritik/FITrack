@@ -1,6 +1,13 @@
 import fitnessAPI from "../api/fitnessAPI";
 import { navigate } from "../navigationRef";
-import { ADD_POST, FETCH_POSTS, POST_ERROR, UPDATE_POST } from "./types";
+import {
+  ADD_POST,
+  DELETE_POST,
+  FETCH_POSTS,
+  POST_ERROR,
+  UPDATE_LIKES,
+  UPDATE_POST,
+} from "./types";
 
 export const addPost = (title, text, image) => async (dispatch) => {
   try {
@@ -39,6 +46,54 @@ export const editPost = (title, text, image, id) => async (dispatch) => {
     console.log(err);
     dispatch({
       type: POST_ERROR,
+    });
+  }
+};
+
+export const addLike = (id) => async (dispatch) => {
+  try {
+    const res = await fitnessAPI.put(`post/like/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const removeLike = (id) => async (dispatch) => {
+  try {
+    const res = await fitnessAPI.put(`post/unlike/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    const res = await fitnessAPI.delete(`post/${id}`);
+
+    dispatch({
+      type: DELETE_POST,
+      payload: id,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };

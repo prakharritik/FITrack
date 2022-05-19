@@ -17,6 +17,9 @@ export const FETCH_WALK = "FETCH_WALK";
 export const ADD_POST = "ADD_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const FETCH_POSTS = "FETCH_POSTS";
+export const UPDATE_LIKES = "UPDATE_LIKES";
+export const DELETE_POST = "DELETE_POST";
+
 export const POST_ERROR = "POST_ERROR";
 
 export const ADD_CALORIE = "ADD_CALORIE";

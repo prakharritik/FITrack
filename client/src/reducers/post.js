@@ -1,4 +1,10 @@
-import { ADD_POST, FETCH_POSTS, UPDATE_POST } from "../actions/types";
+import {
+  ADD_POST,
+  DELETE_POST,
+  FETCH_POSTS,
+  UPDATE_LIKES,
+  UPDATE_POST,
+} from "../actions/types";
 
 const initialState = {
   loading: true,
@@ -15,8 +21,8 @@ export default function (state = initialState, action) {
       return { posts: payload, loading: false };
     case UPDATE_POST:
       const { title, text, image } = payload;
-      //  console.log("ti", title);
-      const st = {
+
+      return {
         posts: state.posts.map((post) => {
           return post._id === payload._id
             ? {
@@ -29,8 +35,20 @@ export default function (state = initialState, action) {
         }),
         loading: false,
       };
-      // console.log("hello", st);
-      return st;
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === payload.id ? { ...post, likes: payload.likes } : post
+        ),
+        loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
+        loading: false,
+      };
     default:
       return state;
   }
