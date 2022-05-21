@@ -1,12 +1,21 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { getPosts } from "../actions/post";
+import { getPosts, addLike, removeLike, deletePost } from "../actions/post";
 import { connect } from "react-redux";
 import { Button } from "react-native-elements";
 import PostItem from "../components/PostItem";
 
-const ViewPostsScreen = ({ getPosts, posts, loading, navigation, user }) => {
+const ViewPostsScreen = ({
+  getPosts,
+  posts,
+  loading,
+  navigation,
+  user,
+  deletePost,
+  addLike,
+  removeLike,
+}) => {
   useEffect(() => {
     getPosts();
   }, []);
@@ -23,7 +32,16 @@ const ViewPostsScreen = ({ getPosts, posts, loading, navigation, user }) => {
         data={posts}
         keyExtractor={(post) => post._id}
         renderItem={({ item }) => {
-          return <PostItem item={item} navigation={navigation} user={user} />;
+          return (
+            <PostItem
+              item={item}
+              navigation={navigation}
+              user={user}
+              addLike={addLike}
+              removeLike={removeLike}
+              deletePost={deletePost}
+            />
+          );
         }}
       />
     </View>
@@ -32,6 +50,9 @@ const ViewPostsScreen = ({ getPosts, posts, loading, navigation, user }) => {
 
 ViewPostsScreen.proptypes = {
   getPosts: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
   posts: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
@@ -43,7 +64,12 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getPosts })(ViewPostsScreen);
+export default connect(mapStateToProps, {
+  getPosts,
+  addLike,
+  removeLike,
+  deletePost,
+})(ViewPostsScreen);
 
 const styles = StyleSheet.create({
   container: {

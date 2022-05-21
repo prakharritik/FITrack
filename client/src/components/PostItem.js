@@ -1,8 +1,15 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Image } from "react-native-elements";
 
-const PostItem = ({ item, navigation, user }) => {
+const PostItem = ({
+  item,
+  navigation,
+  user,
+  addLike,
+  removeLike,
+  deletePost,
+}) => {
   return (
     <TouchableOpacity
       style={styles.card}
@@ -15,15 +22,41 @@ const PostItem = ({ item, navigation, user }) => {
       <View style={styles.cardContent}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.name}>{item.user.name}</Text>
-        <Text style={styles.count}>{item.likes.length}</Text>
+        <View style={styles.buttonsgroup}>
+          <Button
+            icon={{
+              type: "font-awesome",
+              name: "thumbs-up",
+            }}
+            type="clear"
+            title={item.likes.length}
+            onPress={() => addLike(item._id)}
+          />
+          <Button
+            icon={{
+              type: "font-awesome",
+              name: "thumbs-down",
+            }}
+            type="clear"
+            onPress={() => removeLike(item._id)}
+          />
+          <Button
+            icon={{
+              type: "entypo",
+              name: "trash",
+            }}
+            type="clear"
+            onPress={() => deletePost(item._id)}
+          />
+          {user.id === item.user._id ? (
+            <Button
+              icon={{ type: "font-awesome", name: "pencil" }}
+              type="clear"
+              onPress={() => navigation.navigate("Editpost", { post: item })}
+            />
+          ) : null}
+        </View>
       </View>
-      {user.id === item.user._id ? (
-        <Button
-          icon={{ type: "font-awesome", name: "pencil" }}
-          type="clear"
-          onPress={() => navigation.navigate("Editpost", { post: item })}
-        />
-      ) : null}
     </TouchableOpacity>
   );
 };
@@ -42,6 +75,10 @@ const styles = StyleSheet.create({
   cardContent: {
     marginLeft: 20,
     marginTop: 10,
+  },
+  buttonsgroup: {
+    flex: 1,
+    flexDirection: "row",
   },
   image: {
     width: 90,
@@ -67,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
     flexDirection: "row",
+    justifyContent: "space-evenly",
     borderRadius: 30,
   },
   title: {

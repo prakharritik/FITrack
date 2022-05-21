@@ -2,6 +2,7 @@ import {
   ADD_POST,
   DELETE_POST,
   FETCH_POSTS,
+  GET_POST,
   UPDATE_LIKES,
   UPDATE_POST,
 } from "../actions/types";
@@ -9,6 +10,7 @@ import {
 const initialState = {
   loading: true,
   posts: [],
+  post: null,
 };
 
 export default function (state = initialState, action) {
@@ -17,6 +19,12 @@ export default function (state = initialState, action) {
   switch (type) {
     case ADD_POST:
       return { posts: [...state.posts, payload], loading: false };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
     case FETCH_POSTS:
       return { posts: payload, loading: false };
     case UPDATE_POST:

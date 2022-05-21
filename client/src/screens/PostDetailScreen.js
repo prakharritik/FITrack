@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Image } from "react-native-elements";
+import { Button, Image } from "react-native-elements";
 
 const PostDetailScreen = ({ navigation }) => {
   const post = navigation.getParam("post");
