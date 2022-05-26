@@ -9,8 +9,7 @@ import ServingItem from "../components/ServingItem";
 const CalorieDetailScreen = ({
   navigation,
   getFoodItemDetail,
-  itemDetail,
-  loading,
+  calorie: { itemDetail, loading },
   addCalorie,
 }) => {
   const name = navigation.getParam("food_name");
@@ -19,14 +18,14 @@ const CalorieDetailScreen = ({
   }, []);
   let food_name_cap = name.charAt(0).toUpperCase() + name.slice(1);
 
-  return loading ? (
+  return loading || !itemDetail ? (
     <Text>Loading</Text>
   ) : (
     <View style={styles.container}>
       <Image
         source={{
           uri:
-            itemDetail.photo.highres !== null
+            itemDetail?.photo?.highres !== null
               ? itemDetail.photo.highres
               : itemDetail.photo.thumb,
         }}
@@ -58,12 +57,11 @@ const CalorieDetailScreen = ({
 CalorieDetailScreen.proptypes = {
   getFoodItemDetail: PropTypes.func.isRequired,
   addCalorie: PropTypes.func.isRequired,
-  itemDetail: PropTypes.array,
+  calorie: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  itemDetail: state.calorie.itemDetail,
-  loading: state.calorie.loading,
+  calorie: state.calorie,
 });
 
 export default connect(mapStateToProps, { getFoodItemDetail, addCalorie })(

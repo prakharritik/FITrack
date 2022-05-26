@@ -17,34 +17,40 @@ const ViewPostsScreen = ({
   removeLike,
 }) => {
   useEffect(() => {
+    console.log(loading);
     getPosts();
+    console.log(loading);
   }, []);
 
-  return loading ? (
-    <Text>loading</Text>
-  ) : (
-    <View style={styles.container}>
-      <Button
-        icon={{ type: "font-awesome", name: "plus" }}
-        onPress={() => navigation.navigate("Addpost")}
-      />
-      <FlatList
-        data={posts}
-        keyExtractor={(post) => post._id}
-        renderItem={({ item }) => {
-          return (
-            <PostItem
-              item={item}
-              navigation={navigation}
-              user={user}
-              addLike={addLike}
-              removeLike={removeLike}
-              deletePost={deletePost}
-            />
-          );
-        }}
-      />
-    </View>
+  return (
+    <>
+      {loading ? (
+        <Text>loading</Text>
+      ) : (
+        <View style={styles.container}>
+          <Button
+            icon={{ type: "font-awesome", name: "plus" }}
+            onPress={() => navigation.navigate("Addpost")}
+          />
+          <FlatList
+            data={posts}
+            keyExtractor={(post) => post._id}
+            renderItem={({ item }) => {
+              return (
+                <PostItem
+                  item={item}
+                  navigation={navigation}
+                  user={user}
+                  addLike={addLike}
+                  removeLike={removeLike}
+                  deletePost={deletePost}
+                />
+              );
+            }}
+          />
+        </View>
+      )}
+    </>
   );
 };
 

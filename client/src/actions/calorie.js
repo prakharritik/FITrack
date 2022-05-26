@@ -46,13 +46,14 @@ export const getFoodItems = (item) => async (dispatch) => {
 
 export const getFoodItemDetail = (item) => async (dispatch) => {
   try {
+    console.log(item);
     const res = await nutritionixAPI.post("/natural/nutrients", {
       query: item,
     });
-
+    console.log("action", res.data);
     dispatch({ type: ITEM_DETAIL, payload: res.data.foods[0] });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
     dispatch({ type: CALORIE_ERROR });
   }
 };

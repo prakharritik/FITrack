@@ -1,20 +1,28 @@
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import React from "react";
 import { Text } from "react-native-elements";
 
-const CardWithBackground = ({ uri, heading }) => {
+const CardWithBackground = ({ uri, heading, sum }) => {
+  let unit = heading === "Calorie" ? "cal" : "km";
   return (
-    <ImageBackground
-      source={{
-        uri,
-      }}
-      style={styles.container}
-      imageStyle={{ borderRadius: 10 }}
-    >
-      <Text h3 style={styles.heading}>
-        {heading}
-      </Text>
-    </ImageBackground>
+    <View>
+      <ImageBackground
+        source={{
+          uri,
+        }}
+        style={styles.container}
+      >
+        <Text h3 style={styles.heading}>
+          {heading}
+        </Text>
+      </ImageBackground>
+      <View style={styles.progress}>
+        <Text>Today</Text>
+        <Text>
+          {sum} {unit}
+        </Text>
+      </View>
+    </View>
   );
 };
 
@@ -31,7 +39,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 10,
     marginTop: 30,
-
     border: 1,
+  },
+
+  progress: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });

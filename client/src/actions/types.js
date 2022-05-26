@@ -12,7 +12,6 @@ export const ADD_CURR_LOCATION = "ADD_CURR_LOCATION";
 export const START_RECORDING = "START_RECORDING";
 export const ADD_LOCATION = "ADD_LOCATION";
 export const STOP_RECORDING = "STOP_RECORDING";
-export const FETCH_WALK = "FETCH_WALK";
 
 export const ADD_POST = "ADD_POST";
 export const UPDATE_POST = "UPDATE_POST";
@@ -28,3 +27,7 @@ export const FETCH_CALORIE = "FETCH_CALORIE";
 export const CALORIE_ERROR = "CALORIE_ERROR";
 export const ITEM_DETAIL = "ITEM_DETAIL";
 export const LOAD_FOODITEM = "LOAD_FOODITEM";
+
+export const ADD_WALK = "ADD_WALK";
+export const WALK_ERROR = "WALK_ERROR";
+export const FETCH_WALK = "FETCH_WALK";

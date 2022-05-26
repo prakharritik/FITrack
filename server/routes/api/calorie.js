@@ -41,10 +41,25 @@ router.post(
   }
 );
 
+const calculateSum = (calories) => {
+  let sum = 0;
+  calories.forEach((element) => {
+    sum = sum + element.count;
+  });
+  return sum;
+};
+
 router.get("/", async (req, res) => {
+  var d = new Date();
+  d.setHours(0, 0, 0);
   try {
-    let calories = await Calorie.find({ user: req.user.id });
-    return res.json(calories);
+    let calories = await Calorie.find({
+      user: req.user.id,
+      date: { $gte: new Date(d) },
+    });
+    let sum = calculateSum(calories);
+    console.log({ calories, sum });
+    return res.json({ calories, sum });
   } catch (err) {
     console.log(err);
     return res.status(500).send("Server Error.");

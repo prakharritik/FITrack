@@ -59,10 +59,27 @@ router.post("/", async (req, res) => {
   }
 });
 
+const calculateSum = (walks) => {
+  let sum = 0;
+  walks.forEach((element) => {
+    sum = sum + parseFloat(element.distance.toFixed(2));
+  });
+  console.log(sum);
+  return sum;
+};
+
 router.get("/", async (req, res) => {
   try {
-    let walks = await Walk.find({ user: req.user.id });
-    return res.json(walks);
+    var d = new Date();
+    d.setHours(0, 0, 0);
+    let walks = await Walk.find({
+      user: req.user.id,
+      date: { $gte: new Date(d) },
+    });
+    let sum = calculateSum(walks);
+
+    console.log(walks);
+    return res.json({ walks, sum });
   } catch (err) {
     console.log(err);
     return res.status(500).send("Server Error.");
